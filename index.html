@@ -1,0 +1,71 @@
+<!doctypehtml>
+<html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta content="text/html; charset=utf-8"http-equiv=Content-Type>
+<title>l2p - gene set analysis</title>
+<style>
+body {
+    margin:8px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI","Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans","Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    background-color: #fff;
+    color: #333
+}
+</style>
+</head>
+<body>
+<h3>&nbsp;&nbsp;l2p - list to pathway : gene set analysis</h3>
+<div id='texta'>
+<img src="logo.png"><br>
+</div>
+<div id='messages'>
+Loading ... 
+</div>
+<div id='report'>
+</div>
+
+<script>
+var ready = 0;
+
+function submitX() {
+var v = document.getElementById("tinput").value;
+Module.ccall('wasmfunc', [0],['string'],[v])
+}
+
+function eraseText() {
+    document.getElementById("tinput").value = "";
+}
+
+function allReady()
+{
+console.log("in allReady");
+document.getElementById('messages').innerHTML='Enter Human Gene Symbols';
+b=document.getElementById('texta');
+b.innerHTML='<textarea id=tinput cols="100" rows="18"></textarea><br><input type="submit" value="submit" onclick="return submitX();">&nbsp;&nbsp;&nbsp;<input type="button" value="Clear" onclick="return eraseText();"><br> ';
+
+
+
+ready = 1;
+}
+
+console.log("here 1");
+</script>
+
+<script src=l2pwasm.js>
+<script>
+// <script async src=l2pwasm.js>
+console.log("here 2");
+console.log("before wait");
+
+var ii = 0;
+console.log("before wait");
+while (ready==0)
+{
+console.log("waitin "+ii);
+ii = ii+1;
+
+}
+console.log("really ready");
+</script></body></html>
+
